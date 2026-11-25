@@ -1,0 +1,683 @@
+# padhlo-bachho
+padhlo-bachho class 10 and 12 students 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padhlo Bachho — Class 10 & 12 Notes, PYQs & Books</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent-bg: #eff6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .navbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .logo-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
+
+    .brand h1 {
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+
+    .tagline {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .search-box, .search-box input {
+      width: 280px;
+      max-width: 100%;
+    }
+
+    .search-box input {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+
+    .breadcrumb-bar {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .breadcrumb-bar span {
+      cursor: pointer;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .breadcrumb-bar span:hover {
+      text-decoration: underline;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 26px 16px;
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.08);
+    }
+
+    .card-badge {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .study-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .study-box h3 {
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .study-box ul {
+      padding-left: 20px;
+    }
+
+    .study-box li {
+      margin-bottom: 8px;
+    }
+
+    .qa-item {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+
+    .qa-item:last-child {
+      border-bottom: none;
+    }
+
+    .qa-q {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .qa-a {
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .btn-link {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--primary);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .btn-link:hover {
+      background: var(--primary-dark);
+    }
+
+    .footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 16px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand" onclick="goHome()">
+        <span class="logo-badge">PB</span>
+        <div>
+          <h1>Padhlo Bachho</h1>
+          <p class="tagline">Class 10 & 12 Notes, PYQs & Study Hub</p>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search chapter, subject, ya PYQ..." oninput="handleSearch(this.value)" />
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb-bar">
+    <div class="container" id="breadcrumbs"></div>
+  </div>
+
+  <main class="container main-content" id="app"></main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 <strong>Padhlo Bachho</strong> — Free Notes, Question-Answers, PYQs & Study Material for Class 10 & 12.</p>
+    </div>
+  </footer>
+
+  <script>
+    const STUDY_DATA = {
+      "10": {
+        title: "Class 10th",
+        subtitle: "Sabhi subjects ke Chapter Notes, Question-Answers, PYQs aur Books",
+        hasStreams: false,
+        subjects: {
+          science: {
+            name: "Science",
+            desc: "Physics, Chemistry & Biology Chapters, PYQs & Notes",
+            chapters: [
+              {
+                id: "ch1",
+                number: "Chapter 1",
+                title: "Chemical Reactions and Equations",
+                notes: [
+                  "Chemical Reaction: Jab ek ya zyada substances milkar naye properties wale naye substances banate hain.",
+                  "Law of Conservation of Mass: Chemical reaction mein mass na create hota hai aur na destroy—isliye equation balance karna zaroori hai.",
+                  "Types of Reactions: Combination, Decomposition, Displacement, Double Displacement, aur Redox reactions."
+                ],
+                qna: [
+                  {
+                    q: "Q1. Magnesium ribbon ko jalane se pehle sandpaper se saaf kyon kiya jaata hai?",
+                    a: "Magnesium ribbon ke upar basic magnesium carbonate/oxide ki protective layer jam jaati hai. Saaf karne se yeh layer hat jaati hai aur magnesium aasani se oxygen ke saath react karke jalta hai."
+                  }
+                ],
+                chapterPyqs: [
+                  {
+                    year: "2025",
+                    q: "Identify the oxidizing and reducing agent in: CuO + H₂ → Cu + H₂O",
+                    a: "Oxidizing agent: CuO | Reducing agent: H₂."
+                  }
+                ]
+              }
+            ],
+            pyqs: [
+              {
+                year: "2025 Board Paper",
+                title: "Class 10 Science Question Paper 2025 (With Solutions)",
+                pdfUrl: "pdfs/class10-science-pyq-2025.pdf"
+              }
+            ],
+            books: [
+              {
+                title: "Class 10 Science Complete Formula & Reaction Sheet",
+                type: "Revision PDF",
+                pdfUrl: "pdfs/class10-science-formulas.pdf"
+              }
+            ]
+          },
+          maths: {
+            name: "Mathematics",
+            desc: "Real Numbers, Polynomials, Trigonometry, PYQs & Formula Sheets",
+            chapters: [
+              {
+                id: "ch1",
+                number: "Chapter 1",
+                title: "Real Numbers",
+                notes: [
+                  "Fundamental Theorem of Arithmetic: Har composite number ko prime numbers ke product ke roop mein uniquely express kiya ja sakta hai.",
+                  "Relation: HCF(a, b) × LCM(a, b) = a × b."
+                ],
+                qna: [
+                  {
+                    q: "Q1. Agar HCF(306, 657) = 9 hai, toh LCM(306, 657) ज्ञात karein.",
+                    a: "LCM = (306 × 657) / 9 = 22,338."
+                  }
+                ],
+                chapterPyqs: [
+                  {
+                    year: "2025",
+                    q: "Prove that √5 is an irrational number.",
+                    a: "Contradiction method se prove karein ki 5 dono p aur q ko divide karta hai."
+                  }
+                ]
+              }
+            ],
+            pyqs: [
+              {
+                year: "2025 Board Paper",
+                title: "Class 10 Maths Standard PYQ 2025",
+                pdfUrl: "pdfs/class10-maths-2025.pdf"
+              }
+            ],
+            books: [
+              {
+                title: "Class 10 All Chapters Maths Formula Book",
+                type: "Formula PDF",
+                pdfUrl: "pdfs/class10-maths-formulas.pdf"
+              }
+            ]
+          }
+        }
+      },
+      "12": {
+        title: "Class 12th",
+        subtitle: "Apni Stream chunein — Science, Commerce ya Arts",
+        hasStreams: true,
+        streams: {
+          science: {
+            name: "Science Stream",
+            desc: "Physics, Chemistry, Mathematics & Biology",
+            subjects: {
+              physics: {
+                name: "Physics",
+                desc: "Electrostatics, Current Electricity, Optics, PYQs & Derivations",
+                chapters: [
+                  {
+                    id: "ch1",
+                    number: "Chapter 1",
+                    title: "Electric Charges and Fields",
+                    notes: [
+                      "Quantization of Charge: q = ±ne, jahan e = 1.6 × 10⁻¹⁹ C.",
+                      "Coulomb's Law: F = (1 / 4πε₀) · (|q₁q₂| / r²)."
+                    ],
+                    qna: [
+                      {
+                        q: "Q1. Do electric field lines kabhi ek-doosre ko intersect kyon nahi karti?",
+                        a: "Kyunki intersection point par electric field ki do directions hongi, jo ki impossible hai."
+                      }
+                    ],
+                    chapterPyqs: [
+                      {
+                        year: "2025",
+                        q: "Derive electric field on the axial line of an electric dipole.",
+                        a: "E_axial = (1 / 4πε₀) · (2p / r³) for short dipole."
+                      }
+                    ]
+                  }
+                ],
+                pyqs: [
+                  {
+                    year: "2025 Board Paper",
+                    title: "Class 12 Physics PYQ 2025",
+                    pdfUrl: "pdfs/class12-physics-2025.pdf"
+                  }
+                ],
+                books: [
+                  {
+                    title: "Class 12 Physics All Derivations & Formula Handbook",
+                    type: "Revision PDF",
+                    pdfUrl: "pdfs/class12-physics-derivations.pdf"
+                  }
+                ]
+              }
+            }
+          },
+          commerce: {
+            name: "Commerce Stream",
+            desc: "Accountancy, Business Studies & Economics",
+            subjects: {
+              accountancy: {
+                name: "Accountancy",
+                desc: "Partnership, Company Accounts, Financial Analysis & PYQs",
+                chapters: [
+                  {
+                    id: "ch1",
+                    number: "Chapter 1",
+                    title: "Accounting for Partnership Firms — Fundamentals",
+                    notes: [
+                      "Partnership Deed ki absence mein: Profits equally share honge aur Loan par 6% p.a. interest milega."
+                    ],
+                    qna: [
+                      {
+                        q: "Q1. Fixed aur Fluctuating Capital account mein main farq kya hai?",
+                        a: "Fixed method mein Capital aur Current do accounts bante hain, Fluctuating mein sirf ek Capital Account."
+                      }
+                    ],
+                    chapterPyqs: [
+                      {
+                        year: "2024",
+                        q: "State two rules applicable when Partnership Deed is silent.",
+                        a: "Equal profit sharing aur koi interest on capital nahi."
+                      }
+                    ]
+                  }
+                ],
+                pyqs: [
+                  {
+                    year: "2025 Board Paper",
+                    title: "Class 12 Accountancy PYQ 2025",
+                    pdfUrl: "pdfs/class12-accounts-2025.pdf"
+                  }
+                ],
+                books: [
+                  {
+                    title: "Class 12 Accountancy Ratios & Formats Sheet",
+                    type: "Revision PDF",
+                    pdfUrl: "pdfs/class12-accounts-ratios.pdf"
+                  }
+                ]
+              }
+            }
+          },
+          arts: {
+            name: "Arts / Humanities Stream",
+            desc: "History, Political Science, Geography & Sociology",
+            subjects: {
+              history: {
+                name: "History",
+                desc: "Themes in Indian History, Important Dates, PYQs & Notes",
+                chapters: [
+                  {
+                    id: "ch1",
+                    number: "Chapter 1",
+                    title: "Bricks, Beads and Bones (The Harappan Civilisation)",
+                    notes: [
+                      "Mature Harappan period lagbhag 2600 BCE se 1900 BCE tak maana jaata hai.",
+                      "Mohenjodaro apne planned drainage system ke liye jaana jaata hai."
+                    ],
+                    qna: [
+                      {
+                        q: "Q1. Harappan drainage system ki ek khaasiyat likhein.",
+                        a: "Naaliyan grid pattern mein bani thi aur bricks se dhaki hoti thi."
+                      }
+                    ],
+                    chapterPyqs: [
+                      {
+                        year: "2024",
+                        q: "Mention a major craft production center of Harappan Civilisation.",
+                        a: "Chanhudaro bead-making aur shell-cutting ke liye prasiddh tha."
+                      }
+                    ]
+                  }
+                ],
+                pyqs: [
+                  {
+                    year: "2025 Board Paper",
+                    title: "Class 12 History PYQ 2025",
+                    pdfUrl: "pdfs/class12-history-2025.pdf"
+                  }
+                ],
+                books: [
+                  {
+                    title: "Class 12 History Timeline & Map Work PDF",
+                    type: "Map & Timeline PDF",
+                    pdfUrl: "pdfs/class12-history-maps.pdf"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    };
+
+    let state = {
+      classId: null,
+      streamId: null,
+      subjectId: null,
+      subjectTab: "chapters",
+      chapterId: null,
+      chapterTab: "notes"
+    };
+
+    const appEl = document.getElementById("app");
+    const breadcrumbsEl = document.getElementById("breadcrumbs");
+
+    function goHome() {
+      state = {
+        classId: null,
+        streamId: null,
+        subjectId: null,
+        subjectTab: "chapters",
+        chapterId: null,
+        chapterTab: "notes"
+      };
+      document.getElementById("searchInput").value = "";
+      render();
+    }
+
+    function selectClass(classId) {
+      state.classId = classId;
+      state.streamId = null;
+      state.subjectId = null;
+      state.chapterId = null;
+      render();
+    }
+
+    function selectStream(streamId) {
+      state.streamId = streamId;
+      state.subjectId = null;
+      state.chapterId = null;
+      render();
+    }
+
+    function selectSubject(subjectId) {
+      state.subjectId = subjectId;
+      state.subjectTab = "chapters";
+      state.chapterId = null;
+      render();
+    }
+
+    function switchSubjectTab(tab) {
+      state.subjectTab = tab;
+      state.chapterId = null;
+      render();
+    }
+
+    function selectChapter(chapterId) {
+      state.chapterId = chapterId;
+      state.chapterTab = "notes";
+      render();
+    }
+
+    function switchChapterTab(tab) {
+      state.chapterTab = tab;
+      render();
+    }
+
+    function getCurrentSubject() {
+      if (!state.classId || !state.subjectId) return null;
+      const cls = STUDY_DATA[state.classId];
+      if (cls.hasStreams) {
+        return cls.streams[state.streamId]?.subjects[state.subjectId] || null;
+      }
+      return cls.subjects[state.subjectId] || null;
+    }
+
+    function renderBreadcrumbs() {
+      let crumbs = [`<span onclick="goHome()">Home</span>`];
+      if (state.classId) {
+        const cls = STUDY_DATA[state.classId];
+        crumbs.push(`<span onclick="selectClass('${state.classId}')">${cls.title}</span>`);
+        if (cls.hasStreams && state.streamId) {
+          const strm = cls.streams[state.streamId];
+          crumbs.push(`<span onclick="selectStream('${state.streamId}')">${strm.name}</span>`);
+        }
+        const subj = getCurrentSubject();
+        if (subj) {
+          crumbs.push(`<span onclick="selectSubject('${state.subjectId}')">${subj.name}</span>`);
+          if (state.chapterId) {
+            const ch = subj.chapters.find(c => c.id === state.chapterId);
+            if (ch) crumbs.push(`<strong>${ch.number}: ${ch.title}</strong>`);
+          }
+        }
+      }
+      breadcrumbsEl.innerHTML = crumbs.join(" &rsaquo; ");
+    }
+
+    function render() {
+      renderBreadcrumbs();
+
+      if (!state.classId) {
+        appEl.innerHTML = `
+          <h2 class="section-title">Apni Class Chunein</h2>
+          <p class="section-subtitle">Class 10 ya Class 12 select karke Notes, Question-Answers, PYQs aur Books access karein.</p>
+          <div class="grid">
+            <div class="card" onclick="selectClass('10')">
+              <span class="card-badge">Secondary</span>
+              <h3>Class 10th</h3>
+              <p>Sabhi subjects ke Chapter Notes, Important Q&A, PYQs aur Books.</p>
+            </div>
+            <div class="card" onclick="selectClass('12')">
+              <span class="card-badge">Senior Secondary</span>
+              <h3>Class 12th</h3>
+              <p>Science, Commerce aur Arts streams ke full notes, PYQs aur Books.</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const cls = STUDY_DATA[state.classId];
+
+      if (cls.hasStreams && !state.streamId) {
+        const streamCards = Object.entries(cls.streams).map(([key, strm]) => `
+          <div class="card" onclick="selectStream('${key}')">
+            <span class="card-badge">Class 12 Stream</span>
+            <h3>${strm.name}</h3>
+            <p>${strm.desc}</p>
+          </div>
+        `).join("");
+
+        appEl.innerHTML = `
+          <h2 class="section-title">Class 12th — Apni Stream Chunein</h2>
+          <p class="section-subtitle">Stream select karne ke baad aapko usse jude subjects milenge.</p>
+          <div class="grid">${streamCards}</div>
+        `;
+        return;
+      }
+
+      if (
