@@ -1,865 +1,456 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Padhlo Bachho — Class 10 & 12 Notes, PYQs & Books</title>
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --accent-bg: #eff6ff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    .navbar {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-
-    .logo-badge {
-      background: var(--primary);
-      color: #fff;
-      font-weight: 700;
-      padding: 8px 11px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-    }
-
-    .brand h1 {
-      font-size: 1.3rem;
-      color: var(--text);
-    }
-
-    .tagline {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .search-box, .search-box input {
-      width: 280px;
-      max-width: 100%;
-    }
-
-    .search-box input {
-      padding: 9px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.92rem;
-      outline: none;
-    }
-
-    .search-box input:focus {
-      border-color: var(--primary);
-    }
-
-    .breadcrumb-bar {
-      background: #f1f5f9;
-      border-bottom: 1px solid var(--border);
-      padding: 10px 0;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .breadcrumb-bar span {
-      cursor: pointer;
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    .breadcrumb-bar span:hover {
-      text-decoration: underline;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 26px 16px;
-    }
-
-    .section-title {
-      font-size: 1.45rem;
-      margin-bottom: 6px;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      margin-bottom: 20px;
-      font-size: 0.95rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: var(--primary);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.08);
-    }
-
-    .card-badge {
-      display: inline-block;
-      background: var(--accent-bg);
-      color: var(--primary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      background: none;
-      border: none;
-      padding: 10px 16px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-    }
-
-    .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-    }
-
-    .study-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 16px;
-    }
-
-    .study-box h3 {
-      margin-bottom: 12px;
-      color: var(--primary-dark);
-    }
-
-    .study-box ul {
-      padding-left: 20px;
-    }
-
-    .study-box li {
-      margin-bottom: 8px;
-    }
-
-    .qa-item {
-      border-bottom: 1px solid var(--border);
-      padding: 14px 0;
-    }
-
-    .qa-item:last-child {
-      border-bottom: none;
-    }
-
-    .qa-q {
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .qa-a {
-      color: #334155;
-      font-size: 0.95rem;
-    }
-
-    .btn-link {
-      display: inline-block;
-      margin-top: 10px;
-      background: var(--primary);
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 7px;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-    }
-
-    .btn-link:hover {
-      background: var(--primary-dark);
-    }
-
-    .footer {
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      padding: 16px 0;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-  </style>
-</head>
-<body>
-
-  <header class="navbar">
-    <div class="container nav-inner">
-      <div class="brand" onclick="goHome()">
-        <span class="logo-badge">PB</span>
-        <div>
-          <h1>Padhlo Bachho</h1>
-          <p class="tagline">Class 10 & 12 Notes, PYQs & Study Hub</p>
-        </div>
-      </div>
-
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search chapter, subject, ya PYQ..." oninput="handleSearch(this.value)" />
-      </div>
-    </div>
-  </header>
-
-  <div class="breadcrumb-bar">
-    <div class="container" id="breadcrumbs"></div>
-  </div>
-
-  <main class="container main-content" id="app"></main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 <strong>Padhlo Bachho</strong> — Free Notes, Question-Answers, PYQs & Study Material for Class 10 & 12.</p>
-    </div>
-  </footer>
-
-  <script>
-    const STUDY_DATA = {
-      "10": {
-        title: "Class 10th",
-        subtitle: "Sabhi subjects ke Chapter Notes, Question-Answers, PYQs aur Books",
-        hasStreams: false,
-        subjects: {
-          science: {
-            name: "Science",
-            desc: "Physics, Chemistry & Biology Chapters, PYQs & Notes",
-            chapters: [
-              {
-                id: "ch1",
-                number: "Chapter 1",
-                title: "Chemical Reactions and Equations",
-                notes: [
-                  "Chemical Reaction: Jab ek ya zyada substances milkar naye properties wale naye substances banate hain.",
-                  "Law of Conservation of Mass: Chemical reaction mein mass na create hota hai aur na destroy—isliye equation balance karna zaroori hai.",
-                  "Types of Reactions: Combination, Decomposition, Displacement, Double Displacement, aur Redox reactions."
-                ],
-                qna: [
-                  {
-                    q: "Q1. Magnesium ribbon ko jalane se pehle sandpaper se saaf kyon kiya jaata hai?",
-                    a: "Magnesium ribbon ke upar basic magnesium carbonate/oxide ki protective layer jam jaati hai. Saaf karne se yeh layer hat jaati hai aur magnesium aasani se oxygen ke saath react karke jalta hai."
-                  }
-                ],
-                chapterPyqs: [
-                  {
-                    year: "2025",
-                    q: "Identify the oxidizing and reducing agent in: CuO + H₂ → Cu + H₂O",
-                    a: "Oxidizing agent: CuO | Reducing agent: H₂."
-                  }
-                ]
-              }
-            ],
-            pyqs: [
-              {
-                year: "2025 Board Paper",
-                title: "Class 10 Science Question Paper 2025 (With Solutions)",
-                pdfUrl: "pdfs/class10-science-pyq-2025.pdf"
-              }
-            ],
-            books: [
-              {
-                title: "Class 10 Science Complete Formula & Reaction Sheet",
-                type: "Revision PDF",
-                pdfUrl: "pdfs/class10-science-formulas.pdf"
-              }
-            ]
-          },
-          maths: {
-            name: "Mathematics",
-            desc: "Real Numbers, Polynomials, Trigonometry, PYQs & Formula Sheets",
-            chapters: [
-              {
-                id: "ch1",
-                number: "Chapter 1",
-                title: "Real Numbers",
-                notes: [
-                  "Fundamental Theorem of Arithmetic: Har composite number ko prime numbers ke product ke roop mein uniquely express kiya ja sakta hai.",
-                  "Relation: HCF(a, b) × LCM(a, b) = a × b."
-                ],
-                qna: [
-                  {
-                    q: "Q1. Agar HCF(306, 657) = 9 hai, toh LCM(306, 657) ज्ञात karein.",
-                    a: "LCM = (306 × 657) / 9 = 22,338."
-                  }
-                ],
-                chapterPyqs: [
-                  {
-                    year: "2025",
-                    q: "Prove that √5 is an irrational number.",
-                    a: "Contradiction method se prove karein ki 5 dono p aur q ko divide karta hai."
-                  }
-                ]
-              }
-            ],
-            pyqs: [
-              {
-                year: "2025 Board Paper",
-                title: "Class 10 Maths Standard PYQ 2025",
-                pdfUrl: "pdfs/class10-maths-2025.pdf"
-              }
-            ],
-            books: [
-              {
-                title: "Class 10 All Chapters Maths Formula Book",
-                type: "Formula PDF",
-                pdfUrl: "pdfs/class10-maths-formulas.pdf"
-              }
-            ]
-          }
-        }
+chapters: [
+  {
+    id: "ch1",
+    number: "Chapter 1",
+    title: "Chemical Reactions and Equations",
+    diagram: "images/science-ch1.jpg",
+    diagramCaption: "Diagram: Chemical reactions, molecular rearrangement aur lab observations",
+    notes: [
+      "Chemical Reaction: Jab ek ya zyada substances (reactants) milkar naye properties wale naye substances (products) banate hain.",
+      "Observation of Chemical Reaction: State mein badlav, colour mein badlav, gas ka nikalna, ya temperature mein badlav.",
+      "Chemical Equation: Word equation ko chemical symbols aur formulas ke zariye likhna; mass conservation ke liye balance karna zaroori hai.",
+      "Combination Reaction: Do ya zyada reactants milkar ek single product banate hain (e.g., CaO + H₂O → Ca(OH)₂).",
+      "Decomposition Reaction: Ek single reactant toot kar do ya zyada products banata hai (thermal, electrolytic, ya photolytic).",
+      "Displacement Reaction: Zyada reactive element kam reactive element ko uske compound ke solution se hata deta hai.",
+      "Double Displacement Reaction: Do ionic compounds ke beech ions ka exchange hota hai (aksar precipitate banta hai).",
+      "Oxidation & Reduction: Oxygen ka judna ya hydrogen ka nikalna oxidation hai; oxygen ka nikalna ya hydrogen ka judna reduction hai.",
+      "Corrosion & Rancidity: Metals ka air/moisture se kharab hona corrosion hai; oils/fats ka oxidise hokar taste/smell kharab hona rancidity hai."
+    ],
+    qna: [
+      {
+        q: "1. Magnesium ribbon ko jalane se pehle sandpaper se saaf kyon kiya jaata hai?",
+        a: "Magnesium ribbon ke upar basic magnesium carbonate/oxide ki protective layer jam jaati hai. Saaf karne se yeh layer hat jaati hai aur burning aasaan hoti hai."
       },
-      "12": {
-        title: "Class 12th",
-        subtitle: "Apni Stream chunein — Science, Commerce ya Arts",
-        hasStreams: true,
-        streams: {
-          science: {
-            name: "Science Stream",
-            desc: "Physics, Chemistry, Mathematics & Biology",
-            subjects: {
-              physics: {
-                name: "Physics",
-                desc: "Electrostatics, Current Electricity, Optics, PYQs & Derivations",
-                chapters: [
-                  {
-                    id: "ch1",
-                    number: "Chapter 1",
-                    title: "Electric Charges and Fields",
-                    notes: [
-                      "Quantization of Charge: q = ±ne, jahan e = 1.6 × 10⁻¹⁹ C.",
-                      "Coulomb's Law: F = (1 / 4πε₀) · (|q₁q₂| / r²)."
-                    ],
-                    qna: [
-                      {
-                        q: "Q1. Do electric field lines kabhi ek-doosre ko intersect kyon nahi karti?",
-                        a: "Kyunki intersection point par electric field ki do directions hongi, jo ki impossible hai."
-                      }
-                    ],
-                    chapterPyqs: [
-                      {
-                        year: "2025",
-                        q: "Derive electric field on the axial line of an electric dipole.",
-                        a: "E_axial = (1 / 4πε₀) · (2p / r³) for short dipole."
-                      }
-                    ]
-                  }
-                ],
-                pyqs: [
-                  {
-                    year: "2025 Board Paper",
-                    title: "Class 12 Physics PYQ 2025",
-                    pdfUrl: "pdfs/class12-physics-2025.pdf"
-                  }
-                ],
-                books: [
-                  {
-                    title: "Class 12 Physics All Derivations & Formula Handbook",
-                    type: "Revision PDF",
-                    pdfUrl: "pdfs/class12-physics-derivations.pdf"
-                  }
-                ]
-              }
-            }
-          },
-          commerce: {
-            name: "Commerce Stream",
-            desc: "Accountancy, Business Studies & Economics",
-            subjects: {
-              accountancy: {
-                name: "Accountancy",
-                desc: "Partnership, Company Accounts, Financial Analysis & PYQs",
-                chapters: [
-                  {
-                    id: "ch1",
-                    number: "Chapter 1",
-                    title: "Accounting for Partnership Firms — Fundamentals",
-                    notes: [
-                      "Partnership Deed ki absence mein: Profits equally share honge aur Loan par 6% p.a. interest milega."
-                    ],
-                    qna: [
-                      {
-                        q: "Q1. Fixed aur Fluctuating Capital account mein main farq kya hai?",
-                        a: "Fixed method mein Capital aur Current do accounts bante hain, Fluctuating mein sirf ek Capital Account."
-                      }
-                    ],
-                    chapterPyqs: [
-                      {
-                        year: "2024",
-                        q: "State two rules applicable when Partnership Deed is silent.",
-                        a: "Equal profit sharing aur koi interest on capital nahi."
-                      }
-                    ]
-                  }
-                ],
-                pyqs: [
-                  {
-                    year: "2025 Board Paper",
-                    title: "Class 12 Accountancy PYQ 2025",
-                    pdfUrl: "pdfs/class12-accounts-2025.pdf"
-                  }
-                ],
-                books: [
-                  {
-                    title: "Class 12 Accountancy Ratios & Formats Sheet",
-                    type: "Revision PDF",
-                    pdfUrl: "pdfs/class12-accounts-ratios.pdf"
-                  }
-                ]
-              }
-            }
-          },
-          arts: {
-            name: "Arts / Humanities Stream",
-            desc: "History, Political Science, Geography & Sociology",
-            subjects: {
-              history: {
-                name: "History",
-                desc: "Themes in Indian History, Important Dates, PYQs & Notes",
-                chapters: [
-                  {
-                    id: "ch1",
-                    number: "Chapter 1",
-                    title: "Bricks, Beads and Bones (The Harappan Civilisation)",
-                    notes: [
-                      "Mature Harappan period lagbhag 2600 BCE se 1900 BCE tak maana jaata hai.",
-                      "Mohenjodaro apne planned drainage system ke liye jaana jaata hai."
-                    ],
-                    qna: [
-                      {
-                        q: "Q1. Harappan drainage system ki ek khaasiyat likhein.",
-                        a: "Naaliyan grid pattern mein bani thi aur bricks se dhaki hoti thi."
-                      }
-                    ],
-                    chapterPyqs: [
-                      {
-                        year: "2024",
-                        q: "Mention a major craft production center of Harappan Civilisation.",
-                        a: "Chanhudaro bead-making aur shell-cutting ke liye prasiddh tha."
-                      }
-                    ]
-                  }
-                ],
-                pyqs: [
-                  {
-                    year: "2025 Board Paper",
-                    title: "Class 12 History PYQ 2025",
-                    pdfUrl: "pdfs/class12-history-2025.pdf"
-                  }
-                ],
-                books: [
-                  {
-                    title: "Class 12 History Timeline & Map Work PDF",
-                    type: "Map & Timeline PDF",
-                    pdfUrl: "pdfs/class12-history-maps.pdf"
-                  }
-                ]
-              }
-            }
-          }
-        }
+      {
+        q: "2. Exothermic aur Endothermic reaction mein kya antar hai? Ek-ek example dein.",
+        a: "Exothermic reaction mein heat nikalti hai (jaise respiration ya natural gas ka jalna). Endothermic reaction mein heat absorb hoti hai (jaise photosynthesis ya decomposition)."
+      },
+      {
+        q: "3. Balanced chemical equation kyon zaroori hai?",
+        a: "Law of Conservation of Mass ke anusaar kisi bhi chemical reaction mein total mass na create hota hai aur na destroy, isliye dono taraf atoms ki sankhya barabar honi chahiye."
       }
-    };
-
-    let state = {
-      classId: null,
-      streamId: null,
-      subjectId: null,
-      subjectTab: "chapters",
-      chapterId: null,
-      chapterTab: "notes"
-    };
-
-    const appEl = document.getElementById("app");
-    const breadcrumbsEl = document.getElementById("breadcrumbs");
-
-    function goHome() {
-      state = {
-        classId: null,
-        streamId: null,
-        subjectId: null,
-        subjectTab: "chapters",
-        chapterId: null,
-        chapterTab: "notes"
-      };
-      document.getElementById("searchInput").value = "";
-      render();
-    }
-
-    function selectClass(classId) {
-      state.classId = classId;
-      state.streamId = null;
-      state.subjectId = null;
-      state.chapterId = null;
-      render();
-    }
-
-    function selectStream(streamId) {
-      state.streamId = streamId;
-      state.subjectId = null;
-      state.chapterId = null;
-      render();
-    }
-
-    function selectSubject(subjectId) {
-      state.subjectId = subjectId;
-      state.subjectTab = "chapters";
-      state.chapterId = null;
-      render();
-    }
-
-    function switchSubjectTab(tab) {
-      state.subjectTab = tab;
-      state.chapterId = null;
-      render();
-    }
-
-    function selectChapter(chapterId) {
-      state.chapterId = chapterId;
-      state.chapterTab = "notes";
-      render();
-    }
-
-    function switchChapterTab(tab) {
-      state.chapterTab = tab;
-      render();
-    }
-
-    function getCurrentSubject() {
-      if (!state.classId || !state.subjectId) return null;
-      const cls = STUDY_DATA[state.classId];
-      if (cls.hasStreams) {
-        return cls.streams[state.streamId]?.subjects[state.subjectId] || null;
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "Identify oxidizing and reducing agent in: CuO + H₂ → Cu + H₂O",
+        a: "Oxidizing agent: CuO (oxygen deta hai) | Reducing agent: H₂ (oxygen leta hai)."
+      },
+      {
+        year: "2024",
+        q: "Write balanced chemical equation for thermal decomposition of Lead Nitrate.",
+        a: "2Pb(NO₃)₂(s) → 2PbO(s) + 4NO₂(g) + O₂(g)"
       }
-      return cls.subjects[state.subjectId] || null;
-    }
-
-    function renderBreadcrumbs() {
-      let crumbs = [`<span onclick="goHome()">Home</span>`];
-      if (state.classId) {
-        const cls = STUDY_DATA[state.classId];
-        crumbs.push(`<span onclick="selectClass('${state.classId}')">${cls.title}</span>`);
-        if (cls.hasStreams && state.streamId) {
-          const strm = cls.streams[state.streamId];
-          crumbs.push(`<span onclick="selectStream('${state.streamId}')">${strm.name}</span>`);
-        }
-        const subj = getCurrentSubject();
-        if (subj) {
-          crumbs.push(`<span onclick="selectSubject('${state.subjectId}')">${subj.name}</span>`);
-          if (state.chapterId) {
-            const ch = subj.chapters.find(c => c.id === state.chapterId);
-            if (ch) crumbs.push(`<strong>${ch.number}: ${ch.title}</strong>`);
-          }
-        }
+    ]
+  },
+  {
+    id: "ch2",
+    number: "Chapter 2",
+    title: "Acids, Bases and Salts",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Acids: Swad mein khatte hote hain, blue litmus ko red karte hain, aur aqueous solution mein H⁺ / H₃O⁺ ions dete hain.",
+      "Bases: Swad mein kadwe aur chhune mein soapy hote hain, red litmus ko blue karte hain, aur paani mein OH⁻ ions dete hain (water-soluble bases ko alkalis kehte hain).",
+      "Indicators: Litmus, turmeric, phenolphthalein, methyl orange, aur olfactory indicators (onion, vanilla, clove) acid/base ki pehchan batate hain.",
+      "Acid + Metal → Salt + Hydrogen gas; Acid + Metal Carbonate/Hydrogencarbonate → Salt + CO₂ + H₂O.",
+      "Neutralisation: Acid aur base milkar salt aur water banate hain (Acid + Base → Salt + Water + Heat).",
+      "pH Scale (0 se 14): 7 neutral, 7 se kam acidic, aur 7 se zyada basic nature dikhata hai.",
+      "Importance of pH: Hamara body pH 7.0–7.8 ke beech kaam karta hai; soil pH, digestion (HCl in stomach), aur tooth decay (pH < 5.5) mein pH ka bada role hai.",
+      "Important Salts: Common salt (NaCl), Sodium hydroxide (Chlor-alkali process), Bleaching powder (CaOCl₂), Baking soda (NaHCO₃), Washing soda (Na₂CO₃·10H₂O), aur Plaster of Paris (CaSO₄·½H₂O)."
+    ],
+    qna: [
+      {
+        q: "1. Plaster of Paris (POP) ko moisture-proof container mein kyon rakhte hain?",
+        a: "Moisture ke sampark mein aate hi POP paani absorb karke hard solid Gypsum (CaSO₄·2H₂O) mein badal jaata hai aur apni setting property kho deta hai."
+      },
+      {
+        q: "2. Acid ko dilute karte waqt paani mein acid kyon daala jaata hai, acid mein paani kyon nahi?",
+        a: "Dilution exothermic process hai jisme bahut heat nikalti hai. Paani mein dheere-dheere acid daalne se heat poore paani mein absorb ho jaati hai; ulta karne par heat se solution bahar uchhal kar burn kar sakta hai."
       }
-      breadcrumbsEl.innerHTML = crumbs.join(" &rsaquo; ");
-    }
-
-    function render() {
-      renderBreadcrumbs();
-
-      if (!state.classId) {
-        appEl.innerHTML = `
-          <h2 class="section-title">Apni Class Chunein</h2>
-          <p class="section-subtitle">Class 10 ya Class 12 select karke Notes, Question-Answers, PYQs aur Books access karein.</p>
-          <div class="grid">
-            <div class="card" onclick="selectClass('10')">
-              <span class="card-badge">Secondary</span>
-              <h3>Class 10th</h3>
-              <p>Sabhi subjects ke Chapter Notes, Important Q&A, PYQs aur Books.</p>
-            </div>
-            <div class="card" onclick="selectClass('12')">
-              <span class="card-badge">Senior Secondary</span>
-              <h3>Class 12th</h3>
-              <p>Science, Commerce aur Arts streams ke full notes, PYQs aur Books.</p>
-            </div>
-          </div>
-        `;
-        return;
+    ],
+    chapterPyqs: [
+      {
+        year: "2024",
+        q: "Tooth decay pH 5.5 se kam hone par kyon shuru hota hai?",
+        a: "Muh mein maujood bacteria sugar ko tod kar acid banate hain. Jab pH 5.5 se neeche jaata hai, toh tooth enamel corrode hone lagta hai."
+      },
+      {
+        year: "2023",
+        q: "Name two gases produced in Chlor-alkali process and mention one use of each.",
+        a: "Chlorine gas (water treatment / PVC) aur Hydrogen gas (fuels / ammonia)."
       }
-
-      const cls = STUDY_DATA[state.classId];
-
-      if (cls.hasStreams && !state.streamId) {
-        const streamCards = Object.entries(cls.streams).map(([key, strm]) => `
-          <div class="card" onclick="selectStream('${key}')">
-            <span class="card-badge">Class 12 Stream</span>
-            <h3>${strm.name}</h3>
-            <p>${strm.desc}</p>
-          </div>
-        `).join("");
-
-        appEl.innerHTML = `
-          <h2 class="section-title">Class 12th — Apni Stream Chunein</h2>
-          <p class="section-subtitle">Stream select karne ke baad aapko usse jude subjects milenge.</p>
-          <div class="grid">${streamCards}</div>
-        `;
-        return;
+    ]
+  },
+  {
+    id: "ch3",
+    number: "Chapter 3",
+    title: "Metals and Non-metals",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Physical Properties: Metals generally lustrous, malleable (sheets ban sakti hain), ductile (wires ban sakte hain), sonorous, aur heat/electricity ke ache conductors hote hain.",
+      "Exceptions: Mercury room temperature par liquid hota hai; Graphite non-metal hokar bhi electricity conduct karta hai; Sodium/Potassium soft hote hain.",
+      "Chemical Properties of Metals: Oxygen se metal oxides (aksar basic, kuch amphoteric jaise Al₂O₃, ZnO), paani se metal oxide/hydroxide + H₂, aur dilute acids se salt + H₂ banate hain.",
+      "Reactivity Series: Metals ko unki reactivity ke ghat-te kram mein rakhne ki list (K > Na > Ca > Mg > Al > Zn > Fe > Pb > Cu > Hg > Ag > Au).",
+      "Ionic Compounds: Metal se non-metal mein electrons transfer hone se bante hain; inka melting/boiling point high hota hai aur molten/aqueous state mein electricity conduct karte hain.",
+      "Metallurgy: Ore se pure metal nikalne ke steps — enrichment of ore, extraction (low, medium, high reactivity ke hisab se), aur electrolytic refining."
+    ],
+    qna: [
+      {
+        q: "1. Sodium aur Potassium ko kerosene oil mein kyon rakha jaata hai?",
+        a: "Kyunki ye dono bahut reactive metals hain aur hawa ya paani ke sampark mein aate hi tezi se react karke aag pakad lete hain."
+      },
+      {
+        q: "2. Amphoteric oxides kya hote hain? Ek example dein.",
+        a: "Jo metal oxides acids aur bases dono se react karke salt aur water banate hain, unhe amphoteric oxides kehte hain, jaise Al₂O₃ aur ZnO."
       }
-
-      if (!state.subjectId) {
-        const subjectsObj = cls.hasStreams ? cls.streams[state.streamId].subjects : cls.subjects;
-        const subjectCards = Object.entries(subjectsObj).map(([key, subj]) => `
-          <div class="card" onclick="selectSubject('${key}')">
-            <span class="card-badge">${cls.title}</span>
-            <h3>${subj.name}</h3>
-            <p>${subj.desc}</p>
-          </div>
-        `).join("");
-
-        appEl.innerHTML = `
-          <h2 class="section-title">Subject Chunein</h2>
-          <p class="section-subtitle">Kisi bhi subject par click karke Chapters, PYQs aur Books dekhein.</p>
-          <div class="grid">${subjectCards}</div>
-        `;
-        return;
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "Why do ionic compounds have high melting points?",
+        a: "Opposite charged ions ke beech strong electrostatic attraction ko todne ke liye kaafi zyada thermal energy chahiye hoti hai."
+      },
+      {
+        year: "2024",
+        q: "What is roasting? How is it different from calcination?",
+        a: "Roasting mein sulphide ores ko excess air mein garam kiya jaata hai, jabki calcination mein carbonate ores ko limited air mein garam kiya jaata hai."
       }
-
-      const subj = getCurrentSubject();
-
-      if (!state.chapterId) {
-        let tabContent = "";
-        if (state.subjectTab === "chapters") {
-          tabContent = `
-            <div class="grid">
-              ${subj.chapters.map(ch => `
-                <div class="card" onclick="selectChapter('${ch.id}')">
-                  <span class="card-badge">${ch.number}</span>
-                  <h3>${ch.title}</h3>
-                  <p>Notes • Question-Answers • Chapter PYQs</p>
-                </div>
-              `).join("")}
-            </div>
-          `;
-        } else if (state.subjectTab === "pyqs") {
-          tabContent = subj.pyqs.map(p => `
-            <div class="study-box">
-              <span class="card-badge">${p.year}</span>
-              <h3>${p.title}</h3>
-              <a class="btn-link" href="${p.pdfUrl}" target="_blank">Download / View PYQ PDF</a>
-            </div>
-          `).join("");
-        } else if (state.subjectTab === "books") {
-          tabContent = subj.books.map(b => `
-            <div class="study-box">
-              <span class="card-badge">${b.type}</span>
-              <h3>${b.title}</h3>
-              <a class="btn-link" href="${b.pdfUrl}" target="_blank">Open / Download PDF</a>
-            </div>
-          `).join("");
-        }
-
-        appEl.innerHTML = `
-          <h2 class="section-title">${subj.name} (${cls.title})</h2>
-          <p class="section-subtitle">${subj.desc}</p>
-          <div class="tabs">
-            <button class="tab-btn ${state.subjectTab === 'chapters' ? 'active' : ''}" onclick="switchSubjectTab('chapters')">Chapters (${subj.chapters.length})</button>
-            <button class="tab-btn ${state.subjectTab === 'pyqs' ? 'active' : ''}" onclick="switchSubjectTab('pyqs')">PYQs (Alag Section)</button>
-            <button class="tab-btn ${state.subjectTab === 'books' ? 'active' : ''}" onclick="switchSubjectTab('books')">Books & PDFs</button>
-          </div>
-          ${tabContent}
-        `;
-        return;
+    ]
+  },
+  {
+    id: "ch4",
+    number: "Chapter 4",
+    title: "Carbon and its Compounds",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Covalent Bonding: Atoms ke beech electrons ki sharing se banti hai; carbon tetravalent (4 valency) hota hai isliye covalent bonds banata hai.",
+      "Catenation & Tetravalency: Carbon atoms aapas mein lambi chains, branches, ya rings bana sakte hain—isi wajah se carbon ke bahut saare compounds hain.",
+      "Hydrocarbons: Saturated (alkanes, single bond, CₙH₂ₙ₊₂) aur Unsaturated (alkenes double bond CₙH₂ₙ; alkynes triple bond CₙH₂ₙ₋₂).",
+      "Functional Groups & Homologous Series: -OH (alcohol), -CHO (aldehyde), -COOH (carboxylic acid), >C=O (ketone). Homologous series mein consecutive members ke beech -CH₂ group ka antar hota hai.",
+      "Chemical Properties: Combustion (jalna), Oxidation, Addition reaction (unsaturated se saturated), aur Substitution reaction.",
+      "Ethanol & Ethanoic Acid: Ethanol solvent/drinks mein aur ethanoic acid (glacial acetic acid / vinegar) mein use hota hai; esterification aur saponification important reactions hain.",
+      "Soaps and Detergents: Soap long-chain carboxylic acids ke sodium/potassium salts hote hain; micelle bana kar mail saaf karte hain, par hard water mein scum banate hain jabki detergents hard water mein bhi kaam karte hain."
+    ],
+    qna: [
+      {
+        q: "1. Carbon covalent bonds kyon banata hai, ionic bonds kyon nahi?",
+        a: "C⁴⁺ banane ke liye 4 electrons nikalna aur C⁴⁻ banane ke liye 4 electrons lena dono energeticaly mushkil hain, isliye carbon electrons share karke covalent bonds banata hai."
+      },
+      {
+        q: "2. Micelle formation kaise hota hai?",
+        a: "Soap molecule ka hydrophobic tail oil/dirt se judta hai aur hydrophilic head paani ki taraf rehta hai, jisse spherical micelle banta hai aur dirt paani ke saath nikal jaati hai."
       }
-
-      const ch = subj.chapters.find(c => c.id === state.chapterId);
-      let chapterBody = "";
-
-      if (state.chapterTab === "notes") {
-        chapterBody = `
-          <div class="study-box">
-            <h3>Quick Revision Notes</h3>
-            <ul>${ch.notes.map(n => `<li>${n}</li>`).join("")}</ul>
-          </div>
-        `;
-      } else if (state.chapterTab === "qna") {
-        chapterBody = `
-          <div class="study-box">
-            <h3>Important Question-Answers</h3>
-            ${ch.qna.map(item => `
-              <div class="qa-item">
-                <div class="qa-q">${item.q}</div>
-                <div class="qa-a">${item.a}</div>
-              </div>
-            `).join("")}
-          </div>
-        `;
-      } else if (state.chapterTab === "pyqs") {
-        chapterBody = `
-          <div class="study-box">
-            <h3>Is Chapter Ke Previous Year Questions (PYQs)</h3>
-            ${ch.chapterPyqs.map(item => `
-              <div class="qa-item">
-                <span class="card-badge">Year: ${item.year}</span>
-                <div class="qa-q">${item.q}</div>
-                <div class="qa-a"><strong>Answer:</strong> ${item.a}</div>
-              </div>
-            `).join("")}
-          </div>
-        `;
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "Write chemical equation for esterification reaction.",
+        a: "CH₃COOH + C₂H₅OH → CH₃COOC₂H₅ + H₂O (in presence of acid catalyst)."
+      },
+      {
+        year: "2024",
+        q: "What is a homologous series? State any two characteristics.",
+        a: "Aise compounds ki series jinka functional group same ho aur consecutive members mein -CH₂ ka difference ho; physical properties mein gradual change aur chemical properties similar hoti hain."
       }
-
-      appEl.innerHTML = `
-        <h2 class="section-title">${ch.number}: ${ch.title}</h2>
-        <p class="section-subtitle">${subj.name} — ${cls.title}</p>
-        <div class="tabs">
-          <button class="tab-btn ${state.chapterTab === 'notes' ? 'active' : ''}" onclick="switchChapterTab('notes')">Chapter Notes</button>
-          <button class="tab-btn ${state.chapterTab === 'qna' ? 'active' : ''}" onclick="switchChapterTab('qna')">Question-Answers</button>
-          <button class="tab-btn ${state.chapterTab === 'pyqs' ? 'active' : ''}" onclick="switchChapterTab('pyqs')">Chapter PYQs</button>
-        </div>
-        ${chapterBody}
-      `;
-    }
-
-    function handleSearch(query) {
-      const q = query.trim().toLowerCase();
-      if (!q) {
-        render();
-        return;
+    ]
+  },
+  {
+    id: "ch5",
+    number: "Chapter 5",
+    title: "Life Processes",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Life Processes: Nutrition, Respiration, Transportation, aur Excretion—ye sab jeevit rehne ke liye zaroori hain.",
+      "Nutrition: Autotrophic (plants photosynthesis se: 6CO₂ + 12H₂O → C₆H₁₂O₆ + 6O₂ + 6H₂O in sunlight & chlorophyll) aur Heterotrophic (animals/fungi).",
+      "Human Digestion: Mouth (salivary amylase) → Oesophagus → Stomach (HCl, pepsin, mucus) → Small Intestine (bile, pancreatic juice, intestinal juice, villi for absorption).",
+      "Respiration: Glucose ka breakdown karke ATP energy banana; Aerobic (oxygen ke saath) aur Anaerobic (oxygen ki kami mein—yeast mein ethanol + CO₂, muscle mein lactic acid).",
+      "Transportation in Humans: Heart (4 chambers, double circulation), Arteries (oxygenated blood away from heart), Veins (deoxygenated blood towards heart), Capillaries, aur Platelets (clotting).",
+      "Transportation in Plants: Xylem (paani aur minerals upar le jaata hai) aur Phloem (food translocation).",
+      "Excretion in Humans: Nephron kidney ki structural/functional unit hai jo blood filter karke urine banati hai."
+    ],
+    qna: [
+      {
+        q: "1. Small intestine mein villi ka kya kaam hai?",
+        a: "Villi finger-like projections hain jo absorption ke liye surface area badhati hain aur pache hue khane ko blood mein absorb karne mein madad karti hain."
+      },
+      {
+        q: "2. Double circulation kyon zaroori hai?",
+        a: "Isse oxygenated aur deoxygenated blood aapas mein mix nahi hota aur warm-blooded animals ko high energy demand poori karne ke liye efficient oxygen supply milti hai."
       }
-
-      let results = [];
-      Object.entries(STUDY_DATA).forEach(([classId, cls]) => {
-        const processSubjects = (subjects, streamId = null) => {
-          Object.entries(subjects).forEach(([subjId, subj]) => {
-            subj.chapters.forEach(ch => {
-              const matchText = `${ch.title} ${ch.notes.join(" ")} ${ch.qna.map(x => x.q).join(" ")}`.toLowerCase();
-              if (matchText.includes(q) || subj.name.toLowerCase().includes(q)) {
-                results.push({
-                  classId,
-                  streamId,
-                  subjId,
-                  chapterId: ch.id,
-                  label: `${cls.title} • ${subj.name}`,
-                  title: `${ch.number}: ${ch.title}`
-                });
-              }
-            });
-          });
-        };
-
-        if (cls.hasStreams) {
-          Object.entries(cls.streams).forEach(([streamId, strm]) => {
-            processSubjects(strm.subjects, streamId);
-          });
-        } else {
-          processSubjects(cls.subjects);
-        }
-      });
-
-      breadcrumbsEl.innerHTML = `<span onclick="goHome()">Home</span> &rsaquo; Search Results for "${query}"`;
-
-      if (results.length === 0) {
-        appEl.innerHTML = `<p class="section-subtitle">Koi result nahi mila. Koi doosra chapter ya subject search karein.</p>`;
-        return;
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "Draw/describe the structure and function of a nephron.",
+        a: "Nephron mein Bowman's capsule aur glomerulus filtration karte hain, aur tubule useful substances (glucose, amino acids, water) ko reabsorb karta hai."
+      },
+      {
+        year: "2024",
+        q: "Differentiate between arteries and veins.",
+        a: "Arteries ki walls thick aur elastic hoti hain (high pressure blood away from heart), jabki veins ki walls thin hoti hain aur valves hote hain (blood towards heart)."
       }
-
-      appEl.innerHTML = `
-        <h2 class="section-title">Search Results (${results.length})</h2>
-        <div class="grid">
-          ${results.map(r => `
-            <div class="card" onclick="openSearchResult('${r.classId}', ${r.streamId ? `'${r.streamId}'` : 'null'}, '${r.subjId}', '${r.chapterId}')">
-              <span class="card-badge">${r.label}</span>
-              <h3>${r.title}</h3>
-              <p>Click karke Notes, Q&A aur PYQs kholein</p>
-            </div>
-          `).join("")}
-        </div>
-      `;
-    }
-
-    function openSearchResult(classId, streamId, subjId, chapterId) {
-      state.classId = classId;
-      state.streamId = streamId;
-      state.subjectId = subjId;
-      state.chapterId = chapterId;
-      state.chapterTab = "notes";
-      document.getElementById("searchInput").value = "";
-      render();
-    }
-
-    render();
-  </script>
-</body>
-</html>
+    ]
+  },
+  {
+    id: "ch6",
+    number: "Chapter 6",
+    title: "Control and Coordination",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Nervous System: Neurons (dendrite, cell body, axon) electrical impulses ke zariye tezi se information bhejte hain.",
+      "Reflex Action & Reflex Arc: Kisi khatre ya stimulus par bina sochi-samjhi quick involuntary response reflex action hai; iska pathway reflex arc kehlata hai (spinal cord ka role hota hai).",
+      "Human Brain: Fore-brain (thinking, memory, sensory), Mid-brain, aur Hind-brain (pons, medulla—involuntary actions like BP/vomiting; cerebellum—posture & balance).",
+      "Plant Movements: Tropic movements (growth-dependent—phototropism, geotropism, hydrotropism, chemotropism) aur nastic movements.",
+      "Hormones (Chemical Coordination): Plants mein auxins, gibberellins, cytokinins, abscisic acid; animals mein endocrine glands jaise pituitary, thyroid (thyroxine), pancreas (insulin), adrenal (adrenaline—fight or flight)."
+    ],
+    qna: [
+      {
+        q: "1. Adrenaline hormone ko 'fight or flight' hormone kyon kehte hain?",
+        a: "Stress ya khatre ke waqt adrenaline heartbeat, breathing rate aur blood flow ko turant badha deta hai taaki body jaldi action le sake."
+      },
+      {
+        q: "2. Insulin ki kami se kaunsi bimari hoti hai?",
+        a: "Insulin blood sugar level control karta hai; iski kami se diabetes mellitus ho sakti hai."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2024",
+        q: "Trace the path of a reflex arc when you touch a hot object.",
+        a: "Receptor (skin) → Sensory neuron → Spinal cord → Motor neuron → Effector (muscle) pulls hand away."
+      }
+    ]
+  },
+  {
+    id: "ch7",
+    number: "Chapter 7",
+    title: "How do Organisms Reproduce?",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Reproduction: Apne jaisa naya jeev paida karne ki process, jisme DNA copying hoti hai (variations aati hain jo species survival ke liye zaroori hain).",
+      "Asexual Reproduction: Fission (binary/multiple), Fragmentation, Regeneration, Budding, Vegetative propagation, aur Spore formation.",
+      "Sexual Reproduction in Plants: Flower mein stamen (male—anther, filament) aur pistil/carpel (female—stigma, style, ovary); pollination ke baad fertilisation se zygote → embryo → seed → fruit banta hai.",
+      "Human Reproductive System: Male mein testes (sperms + testosterone), vas deferens; female mein ovaries (eggs/ova + estrogen/progesterone), fallopian tube (fertilisation), uterus.",
+      "Reproductive Health: Contraception (barrier, chemical, surgical, IUDs) population control aur STDs se bachav ke liye zaroori hai."
+    ],
+    qna: [
+      {
+        q: "1. DNA copying mein variations aana species ke liye kyon zaroori hai?",
+        a: "Agar environment mein bada badlav aaye (jaise temperature badhna), toh kuch variations wale organisms zinda reh sakte hain aur species ko bachaye rakhte hain."
+      },
+      {
+        q: "2. Fertilisation ke baad flower ke kaunse hisse seed aur fruit mein badalte hain?",
+        a: "Ovule seed mein aur ovary fruit mein badalti hai."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "Differentiate between binary fission and multiple fission with examples.",
+        a: "Binary fission mein ek cell do mein bat-ta hai (Amoeba, Leishmania); multiple fission mein ek saath kai cells bante hain (Plasmodium)."
+      }
+    ]
+  },
+  {
+    id: "ch8",
+    number: "Chapter 8",
+    title: "Heredity",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Heredity: Parents se offspring mein traits/characters ka transfer hona.",
+      "Mendel's Experiments: Pea plants par kaam karke dominant aur recessive traits ko samjha.",
+      "Monohybrid Cross: Ek trait (jaise height: Tall TT × Dwarf tt) ke cross mein F1 mein sab Tall (Tt) aate hain; F2 mein phenotypic ratio 3:1 aur genotypic ratio 1:2:1 hota hai.",
+      "Dihybrid Cross: Do traits ke cross mein F2 phenotypic ratio 9:3:3:1 aata hai, jisse independent assortment ka idea milta hai.",
+      "Sex Determination in Humans: Humans mein 23 pairs chromosomes hote hain (22 autosomes + 1 sex chromosome pair). Mother hamesha X deti hai; father X ya Y de sakte hain (XX = female, XY = male)."
+    ],
+    qna: [
+      {
+        q: "1. Humans mein bacche ka sex kis par depend karta hai aur kyon?",
+        a: "Father ke sperm ke sex chromosome (X ya Y) par depend karta hai, kyunki mother ke sabhi eggs mein X chromosome hota hai."
+      },
+      {
+        q: "2. Dominant aur recessive trait mein kya fark hai?",
+        a: "Dominant trait F1 generation mein apna effect dikhata hai (chahe allele single ho), jabki recessive trait tabhi dikhta hai jab dono alleles recessive hon."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2024",
+        q: "In a cross between round yellow (RRYY) and wrinkled green (rryy) pea seeds, what is the F2 phenotypic ratio?",
+        a: "9 : 3 : 3 : 1 (Round Yellow : Round Green : Wrinkled Yellow : Wrinkled Green)."
+      }
+    ]
+  },
+  {
+    id: "ch9",
+    number: "Chapter 9",
+    title: "Light – Reflection and Refraction",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Laws of Reflection: Angle of incidence (i) = Angle of reflection (r); incident ray, reflected ray aur normal ek hi plane mein hote hain.",
+      "Spherical Mirrors: Concave mirror (converging, real/inverted aur virtual/erect dono images bana sakta hai) aur Convex mirror (diverging, hamesha virtual, erect aur diminished image—rear-view mirror mein use).",
+      "Mirror Formula & Magnification: 1/f = 1/v + 1/u; magnification m = h'/h = -v/u; power of lens P = 1/f (f in metres, unit Dioptre D).",
+      "Refraction of Light: Jab light ek medium se doosre medium mein jaati hai toh speed badalne se bend hoti hai (Snell's law: sin i / sin r = constant = n).",
+      "Lenses: Convex lens (converging) aur Concave lens (diverging); lens formula 1/f = 1/v - 1/u aur m = h'/h = v/u."
+    ],
+    qna: [
+      {
+        q: "1. Vehicles mein rear-view mirror ke roop mein convex mirror kyon use kiya jaata hai?",
+        a: "Convex mirror ka field of view wide hota hai aur yeh hamesha seedhi (erect) aur chhoti (diminished) image banata hai, jisse peeche ka bada area dikh jaata hai."
+      },
+      {
+        q: "2. 1 Dioptre lens power ko define karein.",
+        a: "Jab kisi lens ki focal length 1 metre ho, toh uski power 1 Dioptre (1 D = 1 m⁻¹) hoti hai."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "An object is placed at 2F in front of a convex lens. State position, nature and size of image.",
+        a: "Image 2F par banegi, real aur inverted hogi, aur object ke same size ki hogi."
+      },
+      {
+        year: "2024",
+        q: "Refractive index of diamond is 2.42. What does this statement mean?",
+        a: "Light ki speed vacuum mein diamond ke andar ki speed se 2.42 guna zyada hai."
+      }
+    ]
+  },
+  {
+    id: "ch10",
+    number: "Chapter 10",
+    title: "The Human Eye and the Colourful World",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Power of Accommodation: Ciliary muscles ki madad se eye lens ki focal length badalne ki ability taaki near aur far objects saaf dikhein (near point ~25 cm, far point infinity).",
+      "Myopia (Nearsightedness): Paas ki cheez saaf, door ki dhundhli; image retina se pehle banti hai; correction ke liye concave lens.",
+      "Hypermetropia (Farsightedness): Door ki cheez saaf, paas ki dhundhli; image retina ke peeche banti hai; correction ke liye convex lens.",
+      "Presbyopia: Umar badhne ke saath accommodation kam hona; bifocal lens se correct kiya ja sakta hai.",
+      "Dispersion & Scattering: Prism se white light ka 7 colours (VIBGYOR) mein batna dispersion hai; sky ka blue dikhna aur sunset/sunrise mein sun ka red dikhna scattering of light ki wajah se hota hai."
+    ],
+    qna: [
+      {
+        q: "1. Sunrise aur sunset ke waqt sun reddish kyon dikhai deta hai?",
+        a: "Horizon ke paas light ko zyada distance chalna padta hai; short wavelengths (blue) scatter ho jaati hain aur long wavelength (red) hamari aankh tak pahunchti hai."
+      },
+      {
+        q: "2. Stars kyon twinkles karte hain jabki planets nahi?",
+        a: "Stars point sources of light hain aur atmospheric refraction se unki apparent position/brightness badalti rehti hai; planets kaafi kareeb aur extended sources hain."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2024",
+        q: "A student cannot see clearly objects beyond 1.2 m. Name the defect and lens required.",
+        a: "Defect: Myopia; Lens required: Concave lens of focal length f = -1.2 m (Power = -0.83 D)."
+      }
+    ]
+  },
+  {
+    id: "ch11",
+    number: "Chapter 11",
+    title: "Electricity",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Electric Current & Potential Difference: I = Q / t (unit Ampere A); Potential difference V = W / Q (unit Volt V).",
+      "Ohm's Law: Constant temperature par V ∝ I, ya V = IR, jahan R resistance hai (unit Ohm Ω).",
+      "Resistance Factors: R = ρ(L / A) — length (L) ke directly proportional, area of cross-section (A) ke inversely proportional, aur material/temperature par depend karta hai.",
+      "Series vs Parallel: Series mein R_eq = R₁ + R₂ + ... (current same); Parallel mein 1/R_eq = 1/R₁ + 1/R₂ + ... (voltage same).",
+      "Joule's Law of Heating: H = I²Rt; Electric Power P = VI = I²R = V²/R (commercial unit 1 kWh = 3.6 × 10⁶ J)."
+    ],
+    qna: [
+      {
+        q: "1. Domestic circuits mein appliances ko parallel mein kyon connect kiya jaata hai?",
+        a: "Parallel mein har appliance ko full voltage milta hai, ek kharab ho toh baaki chalte rehte hain, aur har ek ka alag switch lagaya ja sakta hai."
+      },
+      {
+        q: "2. Fuse wire ka kya kaam hai aur woh kis material ki hoti hai?",
+        a: "Overloading ya short circuit mein high current par melt hokar circuit tod deti hai; iski melting point kam hoti hai."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "Two resistors of 4 Ω and 6 Ω are connected in parallel. Find equivalent resistance.",
+        a: "1/R = 1/4 + 1/6 = 5/12 ⇒ R = 12/5 = 2.4 Ω."
+      },
+      {
+        year: "2024",
+        q: "State Joule's law of heating and write its formula.",
+        a: "Heat produced in a resistor is directly proportional to square of current (I²), resistance (R), and time (t): H = I²Rt."
+      }
+    ]
+  },
+  {
+    id: "ch12",
+    number: "Chapter 12",
+    title: "Magnetic Effects of Electric Current",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Magnetic Field Lines: North pole se bahar nikalti hain aur South pole mein jaati hain (inside magnet South se North); kabhi intersect nahi karti.",
+      "Right-Hand Thumb Rule: Agar right hand mein current-carrying conductor ko pakdein aur thumb current ki direction mein ho, toh ungliyan magnetic field ki direction batati hain.",
+      "Solenoid & Electromagnet: Insulated copper wire ke bahut saare turns ki coil solenoid kehlati hai; andar soft iron core rakhne par strong electromagnet banti hai.",
+      "Force on Current-Carrying Conductor: Magnetic field mein rakhe current-carrying conductor par force lagti hai; direction Fleming's Left-Hand Rule se milti hai (Thumb = Force, Forefinger = Field, Middle finger = Current).",
+      "Domestic Electric Circuit: Live wire (red/brown insulation), Neutral wire (black/light blue), Earth wire (green/yellow—safety against shock), fuse/MCB."
+    ],
+    qna: [
+      {
+        q: "1. Do magnetic field lines aapas mein kyon nahi kaat-ti?",
+        a: "Agar do lines kaatengi, toh intersection point par magnetic field ki do directions hongi, jo ki compass needle ke liye impossible hai."
+      },
+      {
+        q: "2. Earthing kyon zaroori hai?",
+        a: "Metallic body wale appliances mein current leak hone par earth wire current ko safe tareeke se ground mein bhejti hai aur electric shock se bachati hai."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2024",
+        q: "State Fleming's Left-Hand Rule.",
+        a: "Left hand ki forefinger, middle finger aur thumb ko mutually perpendicular rakhein: forefinger magnetic field aur middle finger current bataye toh thumb force/motion ki direction batayega."
+      }
+    ]
+  },
+  {
+    id: "ch13",
+    number: "Chapter 13",
+    title: "Our Environment",
+    diagram: "",
+    diagramCaption: "",
+    notes: [
+      "Ecosystem: Biotic (living) aur abiotic (non-living) components ka system.",
+      "Food Chain & Food Web: Producers (plants) → Primary consumers (herbivores) → Secondary consumers → Tertiary consumers; decomposers nutrients recycle karte hain.",
+      "10% Law: Ek trophic level se agle trophic level par sirf ~10% energy transfer hoti hai, baaki heat/life processes mein use ho jaati hai.",
+      "Biological Magnification: Non-degradable harmful chemicals (jaise pesticides) ka food chain ke upar ke trophic levels mein concentration badhna.",
+      "Ozone Layer & Waste: Stratosphere ki ozone (O₃) UV rays se bachati hai (CFCs se depletion hota hai); biodegradable vs non-biodegradable waste management zaroori hai."
+    ],
+    qna: [
+      {
+        q: "1. Food chains aksar 3–4 trophic levels tak hi kyon seemit hoti hain?",
+        a: "Har step par ~90% energy loss ho jaati hai (10% law), isliye 3–4 steps ke baad itni energy nahi bachti ki agla trophic level sustain kar sake."
+      },
+      {
+        q: "2. Ozone layer hamare liye kyon zaroori hai?",
+        a: "Yeh suraj se aane wali hanikarak UV radiation ko rok kar skin cancer aur eye damage se bachati hai."
+      }
+    ],
+    chapterPyqs: [
+      {
+        year: "2025",
+        q: "If 10,000 J energy is available at producer level, how much energy will reach secondary consumer?",
+        a: "Producer (10,000 J) → Primary consumer (1,000 J) → Secondary consumer (100 J)."
+      }
+    ]
+  }
+]
