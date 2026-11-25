@@ -1,5 +1,3 @@
-# padhlo-bachho
-padhlo-bachho class 10 and 12 students 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -680,4 +678,188 @@ padhlo-bachho class 10 and 12 students
         return;
       }
 
-      if (
+      if (!state.subjectId) {
+        const subjectsObj = cls.hasStreams ? cls.streams[state.streamId].subjects : cls.subjects;
+        const subjectCards = Object.entries(subjectsObj).map(([key, subj]) => `
+          <div class="card" onclick="selectSubject('${key}')">
+            <span class="card-badge">${cls.title}</span>
+            <h3>${subj.name}</h3>
+            <p>${subj.desc}</p>
+          </div>
+        `).join("");
+
+        appEl.innerHTML = `
+          <h2 class="section-title">Subject Chunein</h2>
+          <p class="section-subtitle">Kisi bhi subject par click karke Chapters, PYQs aur Books dekhein.</p>
+          <div class="grid">${subjectCards}</div>
+        `;
+        return;
+      }
+
+      const subj = getCurrentSubject();
+
+      if (!state.chapterId) {
+        let tabContent = "";
+        if (state.subjectTab === "chapters") {
+          tabContent = `
+            <div class="grid">
+              ${subj.chapters.map(ch => `
+                <div class="card" onclick="selectChapter('${ch.id}')">
+                  <span class="card-badge">${ch.number}</span>
+                  <h3>${ch.title}</h3>
+                  <p>Notes • Question-Answers • Chapter PYQs</p>
+                </div>
+              `).join("")}
+            </div>
+          `;
+        } else if (state.subjectTab === "pyqs") {
+          tabContent = subj.pyqs.map(p => `
+            <div class="study-box">
+              <span class="card-badge">${p.year}</span>
+              <h3>${p.title}</h3>
+              <a class="btn-link" href="${p.pdfUrl}" target="_blank">Download / View PYQ PDF</a>
+            </div>
+          `).join("");
+        } else if (state.subjectTab === "books") {
+          tabContent = subj.books.map(b => `
+            <div class="study-box">
+              <span class="card-badge">${b.type}</span>
+              <h3>${b.title}</h3>
+              <a class="btn-link" href="${b.pdfUrl}" target="_blank">Open / Download PDF</a>
+            </div>
+          `).join("");
+        }
+
+        appEl.innerHTML = `
+          <h2 class="section-title">${subj.name} (${cls.title})</h2>
+          <p class="section-subtitle">${subj.desc}</p>
+          <div class="tabs">
+            <button class="tab-btn ${state.subjectTab === 'chapters' ? 'active' : ''}" onclick="switchSubjectTab('chapters')">Chapters (${subj.chapters.length})</button>
+            <button class="tab-btn ${state.subjectTab === 'pyqs' ? 'active' : ''}" onclick="switchSubjectTab('pyqs')">PYQs (Alag Section)</button>
+            <button class="tab-btn ${state.subjectTab === 'books' ? 'active' : ''}" onclick="switchSubjectTab('books')">Books & PDFs</button>
+          </div>
+          ${tabContent}
+        `;
+        return;
+      }
+
+      const ch = subj.chapters.find(c => c.id === state.chapterId);
+      let chapterBody = "";
+
+      if (state.chapterTab === "notes") {
+        chapterBody = `
+          <div class="study-box">
+            <h3>Quick Revision Notes</h3>
+            <ul>${ch.notes.map(n => `<li>${n}</li>`).join("")}</ul>
+          </div>
+        `;
+      } else if (state.chapterTab === "qna") {
+        chapterBody = `
+          <div class="study-box">
+            <h3>Important Question-Answers</h3>
+            ${ch.qna.map(item => `
+              <div class="qa-item">
+                <div class="qa-q">${item.q}</div>
+                <div class="qa-a">${item.a}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      } else if (state.chapterTab === "pyqs") {
+        chapterBody = `
+          <div class="study-box">
+            <h3>Is Chapter Ke Previous Year Questions (PYQs)</h3>
+            ${ch.chapterPyqs.map(item => `
+              <div class="qa-item">
+                <span class="card-badge">Year: ${item.year}</span>
+                <div class="qa-q">${item.q}</div>
+                <div class="qa-a"><strong>Answer:</strong> ${item.a}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      appEl.innerHTML = `
+        <h2 class="section-title">${ch.number}: ${ch.title}</h2>
+        <p class="section-subtitle">${subj.name} — ${cls.title}</p>
+        <div class="tabs">
+          <button class="tab-btn ${state.chapterTab === 'notes' ? 'active' : ''}" onclick="switchChapterTab('notes')">Chapter Notes</button>
+          <button class="tab-btn ${state.chapterTab === 'qna' ? 'active' : ''}" onclick="switchChapterTab('qna')">Question-Answers</button>
+          <button class="tab-btn ${state.chapterTab === 'pyqs' ? 'active' : ''}" onclick="switchChapterTab('pyqs')">Chapter PYQs</button>
+        </div>
+        ${chapterBody}
+      `;
+    }
+
+    function handleSearch(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        render();
+        return;
+      }
+
+      let results = [];
+      Object.entries(STUDY_DATA).forEach(([classId, cls]) => {
+        const processSubjects = (subjects, streamId = null) => {
+          Object.entries(subjects).forEach(([subjId, subj]) => {
+            subj.chapters.forEach(ch => {
+              const matchText = `${ch.title} ${ch.notes.join(" ")} ${ch.qna.map(x => x.q).join(" ")}`.toLowerCase();
+              if (matchText.includes(q) || subj.name.toLowerCase().includes(q)) {
+                results.push({
+                  classId,
+                  streamId,
+                  subjId,
+                  chapterId: ch.id,
+                  label: `${cls.title} • ${subj.name}`,
+                  title: `${ch.number}: ${ch.title}`
+                });
+              }
+            });
+          });
+        };
+
+        if (cls.hasStreams) {
+          Object.entries(cls.streams).forEach(([streamId, strm]) => {
+            processSubjects(strm.subjects, streamId);
+          });
+        } else {
+          processSubjects(cls.subjects);
+        }
+      });
+
+      breadcrumbsEl.innerHTML = `<span onclick="goHome()">Home</span> &rsaquo; Search Results for "${query}"`;
+
+      if (results.length === 0) {
+        appEl.innerHTML = `<p class="section-subtitle">Koi result nahi mila. Koi doosra chapter ya subject search karein.</p>`;
+        return;
+      }
+
+      appEl.innerHTML = `
+        <h2 class="section-title">Search Results (${results.length})</h2>
+        <div class="grid">
+          ${results.map(r => `
+            <div class="card" onclick="openSearchResult('${r.classId}', ${r.streamId ? `'${r.streamId}'` : 'null'}, '${r.subjId}', '${r.chapterId}')">
+              <span class="card-badge">${r.label}</span>
+              <h3>${r.title}</h3>
+              <p>Click karke Notes, Q&A aur PYQs kholein</p>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function openSearchResult(classId, streamId, subjId, chapterId) {
+      state.classId = classId;
+      state.streamId = streamId;
+      state.subjectId = subjId;
+      state.chapterId = chapterId;
+      state.chapterTab = "notes";
+      document.getElementById("searchInput").value = "";
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>
